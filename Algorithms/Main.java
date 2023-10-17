@@ -1,8 +1,6 @@
 import java.util.Date;
 import java.util.jar.Attributes.Name;
 
-import operations.Algorithms.BinaryTree.Node;
-
 class BinaryTree{
     Node root;
     class Node{
@@ -80,7 +78,7 @@ private int value;
         private operations.Algorithms.BinaryTree.Node rebalance(operations.Algorithms.BinaryTree.Node left) {
             return null;
         }
-
+        
         // Функция для поворота узла против часовой стрелки.
          Node rotateLeft(Node Node) {
          System.out.printf("поворот влево!!\n");
@@ -119,6 +117,38 @@ private int value;
          node1.color = node2.color;
          node2.color = temp;
         }
+        
+        // случай 1.
+        // когда правый дочерний элемент красный, а левый дочерний элемент черный или не существует.
+        if (void isRed(Node.right) && isRed(Node.left)) {
+        // Повернуть узел  влево
+        Node = rotateLeft(Node);
+
+        // Поменять местами цвета дочернего узла всегда должен быть красным
+        swapColors(Node, Node.left);
+        }
+
+        // случай 2
+       // когда левый ребенок выделен красным цветом
+       if (isRed(Node.left)) {
+       // Повернуть узел в право
+       Node = rotateRight(Node);
+       swapColors(Node, Node.right);
+      }
+
+       // случай 3
+      // когда и левый, и правый дочерние элементы окрашены в красный цвет.
+      if (isRed(Node.left) && isRed(Node.right)) {
+      // Инвертировать цвет узла это левый и правый дети.
+      Node.color = !Node.color;
+
+      // Изменить цвет на черный.
+      Node.left.color = false;
+      Node.right.color = false;
+    }
+
+    return Node;
+  }
 
       
 public class Main{
